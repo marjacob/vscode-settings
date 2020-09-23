@@ -32,16 +32,6 @@ files  := \
 	settings.json \
 	tar.cmd
 
-define install-extension
-code --install-extension $(1)
-
-endef
-
-define update-extension
-code --force --install-extension $(1)
-
-endef
-
 .PHONY: all
 all: bundle
 
@@ -61,7 +51,7 @@ init: init-settings init-extensions
 
 .PHONY: init-extensions
 init-extensions:
-	@$(foreach i,$(extensions),$(call install-extension, $(i)))
+	@code $(addprefix --install-extension , $(extensions))
 
 .PHONY: init-settings
 init-settings: $(settings_link)
@@ -86,7 +76,7 @@ update: update-repository update-extensions
 
 .PHONY: update-extensions
 update-extensions:
-	@$(foreach i,$(extensions),$(call update-extension, $(i)))
+	@code --force $(addprefix --install-extension , $(extensions))
 
 .PHONY: update-force
 update-force: reset-master update
