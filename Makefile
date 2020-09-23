@@ -22,11 +22,15 @@ extensions := \
 	vscodevim.vim
 
 files  := \
-	.git       \
-	.gitignore \
-	Makefile   \
-	README.md  \
-	tar.cmd    \
+	.git          \
+	.gitignore    \
+	Makefile      \
+	README.md     \
+	argv.json     \
+	extensions    \
+	ln.cmd        \
+	settings.json \
+	tar.cmd
 
 define install-extension
 code --install-extension $(1)
