@@ -100,5 +100,5 @@ $(settings_link): $(settings_file) $(settings_home)
 ifeq ($(OS),Windows_NT)
 	@ln "$(settings_link)" "$(<)"
 else
-	@ln -fs $(settings_link) $(<)
+	@ln -fs $(<) $(settings_link)
 endif
