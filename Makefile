@@ -62,6 +62,10 @@ init-extensions:
 .PHONY: init-settings
 init-settings: $(settings_link)
 
+.PHONY: list-extensions
+list-extensions:
+	@code --list-extensions
+
 .PHONY: reset-master
 reset-master:
 	@git fetch --all
