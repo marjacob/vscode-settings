@@ -10,8 +10,7 @@ for /f %%i in ('whoami /priv /nh') do (
 
 if %SeCreateSymbolicLinkPrivilege% neq 1 (
 	echo %0: SeCreateSymbolicLinkPrivilege required
-) else (
-	mklink %*
+	exit /b 1
 )
 
-exit /b %errorlevel%
+mklink %*
