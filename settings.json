@@ -19,6 +19,8 @@
 	"editor.rulers": [
 		80
 	],
+	"extensions.ignoreRecommendations": true,
+	"extensions.showRecommendationsOnlyOnDemand": true,
 	"python.formatting.provider": "yapf",
 	"telemetry.enableCrashReporter": false,
 	"telemetry.enableTelemetry": false,
