@@ -67,8 +67,12 @@ reset-master:
 
 .PHONY: size
 size:
+ifeq ($(OS),Windows_NT)
+	@dir /B /O:S extensions
+else
 	@du -hs $(shell find extensions/ -maxdepth 1 -mindepth 1 -type d) \
 		| sort -h
+endif
 
 .PHONY: update
 update: update-repository update-extensions
