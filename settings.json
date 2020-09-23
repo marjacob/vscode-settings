@@ -9,6 +9,7 @@
 	"clang.cxxflags": [
 		"-std=c++14"
 	],
+	"cmake.configureOnOpen": false,
 	"editor.acceptSuggestionOnEnter": "smart",
 	"editor.fontFamily": "'Hack', 'Consolas', 'Courier New'",
 	"editor.fontLigatures": true,
