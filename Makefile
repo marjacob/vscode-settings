@@ -73,7 +73,8 @@ reset-master:
 
 .PHONY: size
 size:
-	@du -hs $(shell find pack/ -maxdepth 3 -mindepth 3 -type d) | sort -h
+	@du -hs $(shell find extensions/ -maxdepth 1 -mindepth 1 -type d) \
+		| sort -h
 
 .PHONY: update
 update: update-repository update-extensions
