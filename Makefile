@@ -24,7 +24,7 @@ files  := \
 ifeq ($(OS),Windows_NT)
 	platform      := Windows
 	profile       := $(USERPROFILE)\.vscode
-	settings_file := $(CURDIR)\settings.json
+	settings_file := $(subst /,\,$(CURDIR))\settings.json
 	settings_base := $(APPDATA)\Code\User
 	settings_link := $(settings_base)\settings.json
 else
