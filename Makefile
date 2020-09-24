@@ -1,3 +1,6 @@
+# ////////////////////////////////////////////////////////////////////////// #
+# ////////////////////////////////////////////////////////////////////////// #
+
 bundle := bundle.tgz
 
 extensions := \
@@ -22,6 +25,8 @@ files  := \
 	settings.json \
 	tar.cmd
 
+# ////////////////////////////////////////////////////////////////////////// #
+
 ifeq ($(OS),Windows_NT)
 	platform      := Windows
 	profile       := $(USERPROFILE)\.vscode
@@ -44,6 +49,8 @@ else
 	settings_link := $(settings_base)/settings.json
 endif
 
+# ////////////////////////////////////////////////////////////////////////// #
+
 .PHONY: all
 all: bundle
 
@@ -58,6 +65,8 @@ else
 	@$(RM) "$(bundle)"
 endif
 
+# ////////////////////////////////////////////////////////////////////////// #
+
 .PHONY: init
 init: init-settings init-extensions
 
@@ -68,24 +77,28 @@ init-extensions:
 .PHONY: init-settings
 init-settings: $(settings_link)
 
-.PHONY: list-extensions
-list-extensions:
-	@code --list-extensions
+# ////////////////////////////////////////////////////////////////////////// #
 
 .PHONY: deinit-extensions
 deinit-extensions:
 	@code $(addprefix --uninstall-extension , $(extensions))
 
-.PHONY: reset-extensions
-reset-extensions: deinit-extensions init-extensions
+.PHONY: reinit-extensions
+reinit-extensions: deinit-extensions init-extensions
 
 .PHONY: reset-master
 reset-master:
 	@git fetch --all
 	@git reset --hard origin/master
 
-.PHONY: size
-size:
+# ////////////////////////////////////////////////////////////////////////// #
+
+.PHONY: list-extensions
+list-extensions:
+	@code --list-extensions
+
+.PHONY: list-extensions-by-size
+list-extensions-by-size:
 ifeq ($(platform),Windows)
 	@dir /B /O:S extensions
 else
@@ -93,13 +106,15 @@ else
 		| sort -h
 endif
 
-.PHONY: status
-status:
+.PHONY: list-parameters
+list-parameters:
 	@echo Bundle.......: $(bundle)
 	@echo Platform.....: $(platform)
 	@echo Profile......: $(profile)
 	@echo Settings file: $(settings_file)
 	@echo Settings link: $(settings_link)
+
+# ////////////////////////////////////////////////////////////////////////// #
 
 .PHONY: update
 update: update-repository update-extensions
@@ -115,6 +130,8 @@ update-force: reset-master update
 .PHONY: update-repository
 update-repository:
 	@git pull --autostash --rebase
+
+# ////////////////////////////////////////////////////////////////////////// #
 
 $(bundle): $(files)
 	@tar cfvz "$(@)" $(^)
@@ -132,3 +149,6 @@ ifeq ($(platform),Windows)
 else
 	@ln -fs "$(<)" "$(settings_link)"
 endif
+
+# ////////////////////////////////////////////////////////////////////////// #
+# ////////////////////////////////////////////////////////////////////////// #
