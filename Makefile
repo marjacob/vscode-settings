@@ -12,6 +12,7 @@ extensions := \
 	ms-vscode.cmake-tools     \
 	ms-vscode.cpptools        \
 	rust-lang.rust            \
+	stkb.rewrap               \
 	vscodevim.vim
 
 files  := \
