@@ -4,6 +4,7 @@ extensions := \
 	EditorConfig.EditorConfig \
 	bungcip.better-toml       \
 	eamodio.gitlens           \
+	golang.go                 \
 	ms-python.python          \
 	ms-vscode.cmake-tools     \
 	ms-vscode.cpptools        \
