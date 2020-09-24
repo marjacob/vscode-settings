@@ -94,11 +94,11 @@ endif
 
 .PHONY: status
 status:
-	@echo "Bundle.......: $(bundle)"
-	@echo "Platform.....: $(platform)"
-	@echo "Profile......: $(profile)"
-	@echo "Settings file: $(settings_file)"
-	@echo "Settings link: $(settings_link)"
+	@echo Bundle.......: $(bundle)
+	@echo Platform.....: $(platform)
+	@echo Profile......: $(profile)
+	@echo Settings file: $(settings_file)
+	@echo Settings link: $(settings_link)
 
 .PHONY: update
 update: update-repository update-extensions
