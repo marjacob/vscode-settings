@@ -60,6 +60,13 @@ init-settings: $(settings_link)
 list-extensions:
 	@code --list-extensions
 
+.PHONY: deinit-extensions
+deinit-extensions:
+	@code $(addprefix --uninstall-extension , $(extensions))
+
+.PHONY: reset-extensions
+reset-extensions: deinit-extensions init-extensions
+
 .PHONY: reset-master
 reset-master:
 	@git fetch --all
