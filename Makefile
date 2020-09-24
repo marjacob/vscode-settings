@@ -1,15 +1,4 @@
-bundle        := bundle.tgz
-ifeq ($(OS),Windows_NT)
-profile       := $(USERPROFILE)\.vscode
-settings_home := $(APPDATA)\Code\User
-settings_file := $(CURDIR)\settings.json
-settings_link := $(settings_home)\settings.json
-else
-profile       := $(HOME)/.vscode
-settings_home := $(HOME)/.config/Code/User
-settings_file := $(CURDIR)/settings.json
-settings_link := $(settings_home)/settings.json
-endif
+bundle := bundle.tgz
 
 extensions := \
 	EditorConfig.EditorConfig \
@@ -32,6 +21,28 @@ files  := \
 	settings.json \
 	tar.cmd
 
+ifeq ($(OS),Windows_NT)
+	platform      := Windows
+	profile       := $(USERPROFILE)\.vscode
+	settings_file := $(CURDIR)\settings.json
+	settings_base := $(APPDATA)\Code\User
+	settings_link := $(settings_base)\settings.json
+else
+	kernel := $(shell uname -s)
+
+	ifeq ($(kernel),Darwin)
+		platform      := macOS
+		settings_base := $(HOME)/Library/Application Support/Code/User
+	else
+		platform      := Linux
+		settings_base := $(HOME)/.config/Code/User
+	endif
+
+	profile       := $(HOME)/.vscode
+	settings_file := $(CURDIR)/settings.json
+	settings_link := $(settings_base)/settings.json
+endif
+
 .PHONY: all
 all: bundle
 
@@ -40,10 +51,10 @@ bundle: $(bundle)
 
 .PHONY: clean
 clean:
-ifeq ($(OS),Windows_NT)
-	@del /f /q $(bundle) > NUL 2>&1 || exit 0
+ifeq ($(platform),Windows)
+	@del /f /q "$(bundle)" > NUL 2>&1 || exit 0
 else
-	@$(RM) $(bundle)
+	@$(RM) "$(bundle)"
 endif
 
 .PHONY: init
@@ -74,12 +85,20 @@ reset-master:
 
 .PHONY: size
 size:
-ifeq ($(OS),Windows_NT)
+ifeq ($(platform),Windows)
 	@dir /B /O:S extensions
 else
 	@du -hs $(shell find extensions/ -maxdepth 1 -mindepth 1 -type d) \
 		| sort -h
 endif
+
+.PHONY: status
+status:
+	@echo "Bundle.......: $(bundle)"
+	@echo "Platform.....: $(platform)"
+	@echo "Profile......: $(profile)"
+	@echo "Settings file: $(settings_file)"
+	@echo "Settings link: $(settings_link)"
 
 .PHONY: update
 update: update-repository update-extensions
@@ -97,18 +116,18 @@ update-repository:
 	@git pull --rebase
 
 $(bundle): $(files)
-	@tar cfvz $(@) $(^)
+	@tar cfvz "$(@)" $(^)
 
-$(settings_home):
-ifeq ($(OS),Windows_NT)
+$(settings_base):
+ifeq ($(platform),Windows)
 	@mkdir "$(@)"
 else
-	@mkdir -p $(@)
+	@mkdir -p "$(@)"
 endif
 
-$(settings_link): $(settings_file) $(settings_home)
-ifeq ($(OS),Windows_NT)
+$(settings_link): $(settings_file) $(settings_base)
+ifeq ($(platform),Windows)
 	@ln "$(settings_link)" "$(<)"
 else
-	@ln -fs $(<) $(settings_link)
+	@ln -fs "$(<)" "$(settings_link)"
 endif
