@@ -114,7 +114,7 @@ update-force: reset-master update
 
 .PHONY: update-repository
 update-repository:
-	@git pull --rebase
+	@git pull --autostash --rebase
 
 $(bundle): $(files)
 	@tar cfvz "$(@)" $(^)
