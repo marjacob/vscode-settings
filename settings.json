@@ -31,7 +31,7 @@
   "editor.formatOnType": true,
   "editor.insertSpaces": false,
   "editor.quickSuggestions": true,
-  "editor.renderWhitespace": "all",
+  "editor.renderWhitespace": "trailing",
   "editor.rulers": [
     80
   ],
