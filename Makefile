@@ -4,27 +4,27 @@
 bundle := bundle.tgz
 
 extensions := \
-	EditorConfig.EditorConfig                                            \
-	bungcip.better-toml                                                  \
-	eamodio.gitlens                                                      \
-	golang.go                                                            \
-	ms-python.python                                                     \
-	ms-vscode.cmake-tools                                                \
-	ms-vscode-remote.vscode-remote-extensionpack                         \
-	ms-vscode.cpptools                                                   \
-	rust-lang.rust                                                       \
-	stkb.rewrap                                                          \
+	EditorConfig.EditorConfig \
+	bungcip.better-toml \
+	eamodio.gitlens \
+	golang.go \
+	ms-python.python \
+	ms-vscode.cmake-tools \
+	ms-vscode-remote.vscode-remote-extensionpack \
+	ms-vscode.cpptools \
+	rust-lang.rust \
+	stkb.rewrap \
 	vscodevim.vim
 
-files  := \
-	.git                                                                 \
-	.gitignore                                                           \
-	Makefile                                                             \
-	README.md                                                            \
-	argv.json                                                            \
-	extensions                                                           \
-	ln.cmd                                                               \
-	settings.json                                                        \
+files := \
+	.git \
+	.gitignore \
+	Makefile \
+	README.md \
+	argv.json \
+	extensions \
+	ln.cmd \
+	settings.json \
 	tar.cmd
 
 # ////////////////////////////////////////////////////////////////////////// #
