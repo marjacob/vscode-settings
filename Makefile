@@ -30,26 +30,55 @@ files := \
 # ////////////////////////////////////////////////////////////////////////// #
 
 ifeq ($(OS),Windows_NT)
-	platform      := Windows
-	profile       := $(USERPROFILE)\.vscode
-	settings_file := $(subst /,\,$(CURDIR))\settings.json
-	settings_base := $(APPDATA)\Code\User
-	settings_link := $(settings_base)\settings.json
+	blank     :=
+	directory := $(subst /,\,$(CURDIR))
+	platform  := Windows
+	separator := \$(blank)
+	settings  := $(APPDATA)\Code\User
 else
-	kernel := $(shell uname -s)
+	directory := $(CURDIR)
+	kernel    := $(shell uname -s)
+	separator := /
 
 	ifeq ($(kernel),Darwin)
-		platform      := macOS
-		settings_base := $(HOME)/Library/Application Support/Code/User
+		platform := macOS
+		settings := $(HOME)/Library/Application Support/Code/User
 	else
-		platform      := Linux
-		settings_base := $(HOME)/.config/Code/User
+		platform := Linux
+		settings := $(HOME)/.config/Code/User
 	endif
-
-	profile       := $(HOME)/.vscode
-	settings_file := $(CURDIR)/settings.json
-	settings_link := $(settings_base)/settings.json
 endif
+
+bindings_name := keybindings.json
+settings_name := settings.json
+snippets_name := snippets
+
+bindings_file := $(directory)$(separator)$(bindings_name)
+bindings_link := $(settings)$(separator)$(bindings_name)
+settings_file := $(directory)$(separator)$(settings_name)
+settings_link := $(settings)$(separator)$(settings_name)
+snippets_file := $(directory)$(separator)$(snippets_name)
+snippets_link := $(settings)$(separator)$(snippets_name)
+
+# ////////////////////////////////////////////////////////////////////////// #
+
+define create-file-link
+	$(if $(filter $(platform),Windows),\
+		mklink /h "$(2)" "$(1)",\
+		ln -h "$(1)" "$(2)")
+endef
+
+define create-directory
+	$(if $(filter $(platform),Windows),\
+		mkdir "$(1)",\
+		mkdir -p "$(1)")
+endef
+
+define create-directory-link
+	$(if $(filter $(platform),Windows),\
+		mklink /j "$(2)" "$(1)",\
+		ln -s "$(1)" "$(2)")
+endef
 
 # ////////////////////////////////////////////////////////////////////////// #
 
@@ -77,7 +106,7 @@ init-extensions:
 	@code $(addprefix --install-extension , $(extensions))
 
 .PHONY: init-settings
-init-settings: $(settings_link)
+init-settings: $(bindings_link) $(settings_link) $(snippets_link)
 
 # ////////////////////////////////////////////////////////////////////////// #
 
@@ -110,11 +139,20 @@ endif
 
 .PHONY: list-parameters
 list-parameters:
-	@echo Bundle.......: $(bundle)
-	@echo Platform.....: $(platform)
-	@echo Profile......: $(profile)
-	@echo Settings file: $(settings_file)
-	@echo Settings link: $(settings_link)
+	@echo  - Bundle.....: $(bundle)
+	@echo  - Directory..: $(directory)
+	@echo  - Platform...: $(platform)
+	@echo  - Separator..: $(separator)
+	@echo  - Settings...: $(settings)
+	@echo  - Link [$(bindings_name)]
+	@echo      from.....: $(bindings_file)
+	@echo        to.....: $(bindings_link)
+	@echo  - Link [$(settings_name)]
+	@echo      from.....: $(settings_file)
+	@echo        to.....: $(settings_link)
+	@echo  - Link [$(snippets_name)]
+	@echo      from.....: $(snippets_file)
+	@echo        to.....: $(snippets_link)
 
 # ////////////////////////////////////////////////////////////////////////// #
 
@@ -139,19 +177,17 @@ update-repository:
 $(bundle): $(files)
 	@tar cfvz "$(@)" $(^)
 
-$(settings_base):
-ifeq ($(platform),Windows)
-	@mkdir "$(@)"
-else
-	@mkdir -p "$(@)"
-endif
+$(settings):
+	@$(call create-directory,$(@))
 
-$(settings_link): $(settings_file) $(settings_base)
-ifeq ($(platform),Windows)
-	@ln "$(settings_link)" "$(<)"
-else
-	@ln -fs "$(<)" "$(settings_link)"
-endif
+$(bindings_link): | $(settings)
+	@$(call create-file-link,$(bindings_file),$(@))
+
+$(settings_link): | $(settings)
+	@$(call create-file-link,$(settings_file),$(@))
+
+$(snippets_link): | $(settings)
+	@$(call create-directory-link,$(snippets_file),$(@))
 
 # ////////////////////////////////////////////////////////////////////////// #
 # ////////////////////////////////////////////////////////////////////////// #
