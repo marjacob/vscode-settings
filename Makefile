@@ -118,7 +118,8 @@ list-parameters:
 # ////////////////////////////////////////////////////////////////////////// #
 
 .PHONY: update
-update: update-repository update-extensions
+update: update-repository
+	@$(MAKE) --no-print-directory update-extensions
 	@git status
 
 .PHONY: update-extensions
