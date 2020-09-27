@@ -23,7 +23,6 @@ files := \
 	README.md \
 	argv.json \
 	extensions \
-	ln.cmd \
 	settings.json \
 	tar.cmd
 
