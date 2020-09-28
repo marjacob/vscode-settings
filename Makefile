@@ -64,15 +64,11 @@ snippets_link := $(settings)$(separator)$(snippets_name)
 define create-file-link
 	$(if $(filter $(platform),Windows),\
 		mklink /h "$(2)" "$(1)",\
-		$(if $(filter $(platform),macOS),\
-			ln -h "$(1)" "$(2)",\
-			ln "$(1)" "$(2)"))
+		ln $(if $(filter $(platform),macOS),-h,) "$(1)" "$(2)")
 endef
 
 define create-directory
-	$(if $(filter $(platform),Windows),\
-		mkdir "$(1)",\
-		mkdir -p "$(1)")
+	mkdir $(if $(filter $(platform),Windows),,-p) "$(1)"
 endef
 
 define create-directory-link
