@@ -77,6 +77,12 @@ define create-directory-link
 		ln -s "$(1)" "$(2)")
 endef
 
+define delete-file
+	$(if $(filter $(platform),Windows),\
+		del /f /q "$(1)" > NUL 2>&1 || exit 0,\
+		$(RM) "$(1)")
+endef
+
 # ////////////////////////////////////////////////////////////////////////// #
 
 .PHONY: all
@@ -87,11 +93,7 @@ bundle: $(bundle)
 
 .PHONY: clean
 clean:
-ifeq ($(platform),Windows)
-	@del /f /q "$(bundle)" > NUL 2>&1 || exit 0
-else
-	@$(RM) "$(bundle)"
-endif
+	@$(call delete-file,$(bundle))
 
 # ////////////////////////////////////////////////////////////////////////// #
 
