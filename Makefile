@@ -9,9 +9,10 @@ extensions := \
 	eamodio.gitlens \
 	golang.go \
 	ms-python.python \
-	ms-vscode.cmake-tools \
 	ms-vscode-remote.vscode-remote-extensionpack \
+	ms-vscode.cmake-tools \
 	ms-vscode.cpptools \
+	ms-vscode.hexeditor \
 	rust-lang.rust \
 	stkb.rewrap \
 	vscodevim.vim
