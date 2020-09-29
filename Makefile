@@ -25,7 +25,9 @@ files := \
 	README.md \
 	argv.json \
 	extensions \
+	keybindings.json \
 	settings.json \
+	snippets \
 	tar.cmd
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
