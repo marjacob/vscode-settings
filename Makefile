@@ -5,6 +5,7 @@ bundle := bundle.tgz
 
 extensions := \
 	EditorConfig.EditorConfig \
+	aaron-bond.better-comments \
 	bungcip.better-toml \
 	eamodio.gitlens \
 	golang.go \
