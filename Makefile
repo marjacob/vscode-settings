@@ -1,7 +1,7 @@
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
 
-bundle := bundle.tgz
+BUNDLE ?= bundle.tgz
 
 extensions := \
 	EditorConfig.EditorConfig \
@@ -93,11 +93,11 @@ endef
 all: bundle
 
 .PHONY: bundle
-bundle: $(bundle)
+bundle: $(BUNDLE)
 
 .PHONY: clean
 clean:
-	@$(call delete-file,$(bundle))
+	@$(call delete-file,$(BUNDLE))
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
 
@@ -142,7 +142,7 @@ endif
 
 .PHONY: list-parameters
 list-parameters:
-	@echo  - Bundle.....: $(bundle)
+	@echo  - Bundle.....: $(BUNDLE)
 	@echo  - Directory..: $(directory)
 	@echo  - Platform...: $(platform)
 	@echo  - Separator..: $(separator)
@@ -177,7 +177,7 @@ update-repository:
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
 
-$(bundle): $(files)
+$(BUNDLE): $(files)
 	@tar cfvz "$(@)" $(^)
 
 $(settings):
