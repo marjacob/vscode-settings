@@ -178,7 +178,7 @@ update-repository:
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
 
 $(BUNDLE): $(files)
-	@tar cfvz "$(@)" $(^)
+	@tar cfz "$(@)" $(^)
 
 $(settings):
 	@$(call create-directory,$(@))
