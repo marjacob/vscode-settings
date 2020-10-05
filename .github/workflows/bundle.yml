@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - name: Clone repository
       uses: actions/checkout@v2
@@ -30,10 +30,11 @@ jobs:
     - name: Install extensions
       run: make init
     - name: Run program for one minute
-      continue-on-error: true
       uses: GabrielBB/xvfb-action@v1
+      continue-on-error: true
+      timeout-minutes: 2
       with:
-        run: sudo -E timeout 1m unshare -fp runuser -u runner -- code --wait
+        run: sudo -E unshare --kill-child -fp runuser -u runner -- code --wait
     - name: Create artifact
       run: make bundle
     - name: Upload artifact
