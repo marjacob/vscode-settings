@@ -51,7 +51,7 @@
   "vim.useSystemClipboard": true,
   "workbench.colorCustomizations": {
     "[Solarized Dark]": {
-      "editorIndentGuide.activeBackground": "#85990020",
+      "editorIndentGuide.activeBackground": "#073642ff",
       "editorIndentGuide.background": "#00000000"
     }
   },
