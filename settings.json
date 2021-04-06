@@ -49,6 +49,12 @@
   "telemetry.enableTelemetry": false,
   "update.showReleaseNotes": false,
   "vim.useSystemClipboard": true,
+  "workbench.colorCustomizations": {
+    "[Solarized Dark]": {
+      "editorIndentGuide.activeBackground": "#85990020",
+      "editorIndentGuide.background": "#00000000"
+    }
+  },
   "workbench.colorTheme": "Solarized Dark",
   "workbench.enableExperiments": false,
   "workbench.startupEditor": "newUntitledFile"
