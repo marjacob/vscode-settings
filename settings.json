@@ -16,12 +16,6 @@
     "rewrap.autoWrap.enabled": true
   },
   "breadcrumbs.enabled": true,
-  "clang.cflags": [
-    "-std=c11"
-  ],
-  "clang.cxxflags": [
-    "-std=c++14"
-  ],
   "cmake.configureOnOpen": false,
   "editor.acceptSuggestionOnEnter": "smart",
   "editor.detectIndentation": false,
