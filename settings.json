@@ -51,6 +51,10 @@
     "[Solarized Dark]": {
       "editorIndentGuide.activeBackground": "#073642ff",
       "editorIndentGuide.background": "#00000000"
+    },
+    "[Solarized Light]": {
+      "editorIndentGuide.activeBackground": "#eee8d5ff",
+      "editorIndentGuide.background": "#00000000"
     }
   },
   "workbench.colorTheme": "Solarized Dark",
