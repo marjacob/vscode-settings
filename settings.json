@@ -40,6 +40,17 @@
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   "update.showReleaseNotes": false,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "k"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
   "vim.useSystemClipboard": true,
   "workbench.colorCustomizations": {
     "[Solarized Dark]": {
