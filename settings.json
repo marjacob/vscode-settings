@@ -37,8 +37,7 @@
   "gitlens.showWhatsNewAfterUpgrades": false,
   "python.formatting.provider": "yapf",
   "python.showStartPage": false,
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
+  "telemetry.telemetryLevel": "off",
   "update.showReleaseNotes": false,
   "vim.insertModeKeyBindings": [
     {
