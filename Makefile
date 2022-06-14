@@ -11,8 +11,7 @@ extensions := \
 	golang.go \
 	ms-python.python \
 	ms-vscode-remote.vscode-remote-extensionpack \
-	ms-vscode.cmake-tools \
-	ms-vscode.cpptools \
+	ms-vscode.cpptools-extension-pack \
 	ms-vscode.hexeditor \
 	ms-vscode.makefile-tools \
 	stkb.rewrap \
