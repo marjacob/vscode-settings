@@ -19,7 +19,6 @@ extensions := \
 	vscodevim.vim
 
 files := \
-	.git \
 	.gitignore \
 	Makefile \
 	README.md \
