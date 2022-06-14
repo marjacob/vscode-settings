@@ -26,13 +26,12 @@
   "editor.insertSpaces": false,
   "editor.quickSuggestions": {
     "comments": "on",
-    "strings": "on",
-    "other": "on"
+    "other": "on",
+    "strings": "on"
   },
   "editor.renderWhitespace": "trailing",
-  "editor.rulers": [
-    80
-  ],
+  "editor.rulers": [80],
+  "editor.semanticHighlighting.enabled": true,
   "editor.tabSize": 8,
   "extensions.ignoreRecommendations": true,
   "files.trimFinalNewlines": true,
@@ -45,13 +44,8 @@
   "update.showReleaseNotes": false,
   "vim.insertModeKeyBindings": [
     {
-      "before": [
-        "j",
-        "k"
-      ],
-      "after": [
-        "<Esc>"
-      ]
+      "after": ["<Esc>"],
+      "before": ["j", "k"]
     }
   ],
   "vim.useSystemClipboard": true,
@@ -66,8 +60,7 @@
     }
   },
   "workbench.colorTheme": "Solarized Dark",
+  "workbench.editor.untitled.hint": "hidden",
   "workbench.enableExperiments": false,
-  "workbench.startupEditor": "newUntitledFile",
-  "editor.semanticHighlighting.enabled": true,
-  "workbench.editor.untitled.hint": "hidden"
+  "workbench.startupEditor": "newUntitledFile"
 }
