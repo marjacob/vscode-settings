@@ -8,7 +8,6 @@ extensions := \
 	aaron-bond.better-comments \
 	bungcip.better-toml \
 	eamodio.gitlens \
-	golang.go \
 	ms-python.python \
 	ms-vscode-remote.vscode-remote-extensionpack \
 	ms-vscode.cpptools-extension-pack \
