@@ -68,5 +68,6 @@
   "workbench.colorTheme": "Solarized Dark",
   "workbench.enableExperiments": false,
   "workbench.startupEditor": "newUntitledFile",
+  "editor.semanticHighlighting.enabled": true,
   "workbench.editor.untitled.hint": "hidden"
 }
