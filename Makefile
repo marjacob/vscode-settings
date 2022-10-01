@@ -8,6 +8,7 @@ extensions := \
 	aaron-bond.better-comments \
 	bungcip.better-toml \
 	eamodio.gitlens \
+	ms-python.black-formatter \
 	ms-python.isort \
 	ms-python.python \
 	ms-vscode-remote.vscode-remote-extensionpack \
