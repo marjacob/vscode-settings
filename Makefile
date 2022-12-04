@@ -15,6 +15,7 @@ extensions := \
 	ms-vscode.cpptools-extension-pack \
 	ms-vscode.hexeditor \
 	ms-vscode.makefile-tools \
+	rust-lang.rust-analyzer \
 	stkb.rewrap \
 	vscodevim.vim
 
